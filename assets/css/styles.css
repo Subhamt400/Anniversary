@@ -19,7 +19,7 @@
 
 body {
     font-family: 'Lato', sans-serif;
-    line-height: 1.6;
+    line-height: 1.5;
     color: var(--color-text);
     background-color: var(--color-ivory);
     background-image: url('../images/floral-pattern.jpg');
@@ -32,44 +32,44 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 /* Typography */
 h1, h2, h3 {
     font-family: 'Playfair Display', serif;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     color: var(--color-text);
 }
 
 h1 {
     font-weight: 700;
-    font-size: 3.5rem;
+    font-size: 3.2rem;
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: var(--color-accent);
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     position: relative;
 }
 
 h2::after {
     content: '';
     display: block;
-    width: 60px;
-    height: 3px;
+    width: 50px;
+    height: 2px;
     background: var(--color-primary);
-    margin: 1rem auto;
+    margin: 0.75rem auto;
 }
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    height: 90vh;
     background: linear-gradient(135deg, 
-                rgba(255, 182, 193, 0.3), 
-                rgba(255, 105, 180, 0.3)),
+                rgba(255, 182, 193, 0.1), 
+                rgba(255, 105, 180, 0.1)),
                 url('../images/floral-pattern.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
@@ -86,12 +86,12 @@ h2::after {
     right: 0;
     bottom: 0;
     background: linear-gradient(to bottom,
-                rgba(255, 255, 240, 0.9),
-                rgba(255, 255, 240, 0.7));
+                rgba(255, 255, 240, 0.5),
+                rgba(255, 255, 240, 0.3));
 }
 
 .hero-content {
-    padding: 2rem;
+    padding: 1.5rem;
     position: relative;
     z-index: 1;
     opacity: 0;
@@ -99,21 +99,21 @@ h2::after {
 }
 
 .couple-names {
-    font-size: 4rem;
-    margin-bottom: 1rem;
+    font-size: 3.5rem;
+    margin-bottom: 0.75rem;
     color: var(--color-accent);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .anniversary-text {
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
+    font-size: 2.4rem;
+    margin-bottom: 0.75rem;
     color: var(--color-text);
 }
 
 /* Countdown Section */
 .countdown {
-    padding: 4rem 0;
+    padding: 3rem 0;
     background-color: var(--color-white);
     box-shadow: var(--shadow-soft);
 }
@@ -121,24 +121,24 @@ h2::after {
 .countdown-timer {
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 .timer-item {
     text-align: center;
-    min-width: 100px;
+    min-width: 80px;
 }
 
 .timer-item span {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 700;
     color: var(--color-accent);
     display: block;
 }
 
 .timer-item label {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--color-text);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -146,22 +146,22 @@ h2::after {
 
 /* Event Details Section */
 .event-details {
-    padding: 6rem 0;
+    padding: 4rem 0;
     background-color: var(--color-white);
 }
 
 .details-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2.5rem;
-    margin: 3rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
 }
 
 .detail-item {
     text-align: center;
-    padding: 2.5rem;
+    padding: 1.5rem;
     background: var(--color-ivory);
-    border-radius: 15px;
+    border-radius: 12px;
     box-shadow: var(--shadow-soft);
     transition: var(--transition);
     border: 1px solid rgba(255, 105, 180, 0.1);
@@ -202,7 +202,7 @@ h2::after {
 
 /* Warm Message Section */
 .warm-message {
-    padding: 6rem 0;
+    padding: 4rem 0;
     background-color: var(--color-ivory);
 }
 
@@ -210,27 +210,27 @@ h2::after {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
-    padding: 2rem;
+    padding: 1.5rem;
     background: var(--color-white);
-    border-radius: 15px;
+    border-radius: 12px;
     box-shadow: var(--shadow-soft);
 }
 
 /* Photo Gallery Section */
 .photo-gallery {
-    padding: 6rem 0;
+    padding: 4rem 0;
     background-color: var(--color-white);
 }
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 .gallery-item {
-    border-radius: 15px;
+    border-radius: 12px;
     overflow: hidden;
     box-shadow: var(--shadow-soft);
     transition: var(--transition);
@@ -245,7 +245,7 @@ h2::after {
 
 .gallery-item img {
     width: 100%;
-    height: 300px;
+    height: 250px;
     object-fit: cover;
     transition: transform 0.5s ease;
 }
@@ -256,13 +256,13 @@ h2::after {
 
 /* Location Section */
 .location {
-    padding: 6rem 0;
+    padding: 4rem 0;
     background-color: var(--color-ivory);
 }
 
 .map-container {
-    margin-top: 2rem;
-    border-radius: 15px;
+    margin-top: 1.5rem;
+    border-radius: 12px;
     overflow: hidden;
     box-shadow: var(--shadow-soft);
     border: 1px solid rgba(255, 105, 180, 0.1);
@@ -281,65 +281,26 @@ h2::after {
 .footer {
     background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     color: var(--color-white);
-    padding: 3rem 0;
+    padding: 2rem 0;
     text-align: center;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .couple-names {
-        font-size: 3rem;
+        font-size: 2.8rem;
     }
 
     .anniversary-text {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .countdown-timer {
         gap: 1rem;
-    }
-
-    .timer-item {
-        min-width: 70px;
-    }
-
-    .timer-item span {
-        font-size: 2rem;
-    }
-
-    .details-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .container {
-        padding: 0 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .couple-names {
-        font-size: 2.5rem;
-    }
-
-    .anniversary-text {
-        font-size: 1.8rem;
-    }
-
-    h2 {
-        font-size: 1.8rem;
-    }
-
-    .countdown-timer {
-        flex-wrap: wrap;
     }
 
     .timer-item {
@@ -350,12 +311,51 @@ h2::after {
         font-size: 1.8rem;
     }
 
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 0 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .couple-names {
+        font-size: 2.2rem;
+    }
+
+    .anniversary-text {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .countdown-timer {
+        flex-wrap: wrap;
+    }
+
+    .timer-item {
+        min-width: 50px;
+    }
+
+    .timer-item span {
+        font-size: 1.5rem;
+    }
+
     .rsvp-button {
-        padding: 1rem 2rem;
+        padding: 0.8rem 1.8rem;
         font-size: 1rem;
     }
 
     .detail-item {
-        padding: 1.5rem;
+        padding: 1.2rem;
     }
 } 
