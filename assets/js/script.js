@@ -66,7 +66,8 @@ function createConfetti() {
     document.body.appendChild(canvas);
 
     const particles = [];
-    const colors = ['#FF69B4', '#FFB6C1', '#FF1493', '#FFFFFF'];
+    const colors = ['#FF69B4', '#FFB6C1', '#FF1493', '#FFFFFF', '#FFD700', '#FFA07A'];
+    const shapes = ['circle', 'square', 'triangle', 'heart'];
 
     function resizeCanvas() {
         canvas.width = window.innerWidth;
@@ -76,32 +77,68 @@ function createConfetti() {
     class Particle {
         constructor() {
             this.x = Math.random() * canvas.width;
-            this.y = -10;
-            this.size = Math.random() * 5 + 5;
+            this.y = -20;
+            this.size = Math.random() * 8 + 4;
             this.color = colors[Math.floor(Math.random() * colors.length)];
-            this.speed = Math.random() * 3 + 2;
+            this.speed = Math.random() * 4 + 3;
             this.angle = Math.random() * Math.PI * 2;
             this.rotation = Math.random() * 0.2 - 0.1;
+            this.shape = shapes[Math.floor(Math.random() * shapes.length)];
+            this.spin = Math.random() * 0.2 - 0.1;
+            this.spinSpeed = Math.random() * 0.02 + 0.01;
+            this.wobble = Math.random() * 0.1;
+            this.wobbleSpeed = Math.random() * 0.02 + 0.01;
+            this.wobbleOffset = Math.random() * Math.PI * 2;
         }
 
         update() {
             this.y += this.speed;
             this.x += Math.sin(this.angle) * 2;
             this.angle += this.rotation;
+            this.spin += this.spinSpeed;
+            this.wobbleOffset += this.wobbleSpeed;
         }
 
         draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.spin);
             ctx.fillStyle = this.color;
-            ctx.fill();
+
+            switch(this.shape) {
+                case 'circle':
+                    ctx.beginPath();
+                    ctx.arc(0, 0, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    break;
+                case 'square':
+                    ctx.fillRect(-this.size, -this.size, this.size * 2, this.size * 2);
+                    break;
+                case 'triangle':
+                    ctx.beginPath();
+                    ctx.moveTo(0, -this.size);
+                    ctx.lineTo(this.size, this.size);
+                    ctx.lineTo(-this.size, this.size);
+                    ctx.closePath();
+                    ctx.fill();
+                    break;
+                case 'heart':
+                    const s = this.size;
+                    ctx.beginPath();
+                    ctx.moveTo(0, s/4);
+                    ctx.bezierCurveTo(s/4, 0, s/2, s/4, 0, s);
+                    ctx.bezierCurveTo(-s/2, s/4, -s/4, 0, 0, s/4);
+                    ctx.fill();
+                    break;
+            }
+            ctx.restore();
         }
     }
 
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        if (particles.length < 100) {
+        if (particles.length < 150) {
             particles.push(new Particle());
         }
 
@@ -142,11 +179,23 @@ function initWhatsAppRedirect() {
             ? `whatsapp://send?phone=${phoneNumber}&text=${message}`
             : `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
         
-        // Trigger confetti and redirect
-        createConfetti();
-        setTimeout(() => {
-            window.open(whatsappUrl, '_blank');
-        }, 500);
+        // Redirect immediately without confetti
+        window.open(whatsappUrl, '_blank');
+    });
+}
+
+// Image Reveal with Curtain
+function initImageReveal() {
+    const imageReveal = document.querySelector('.image-reveal');
+    const curtain = document.querySelector('.curtain');
+    
+    if (!imageReveal || !curtain) return;
+
+    imageReveal.addEventListener('click', function() {
+        if (!curtain.classList.contains('revealed')) {
+            curtain.classList.add('revealed');
+            createConfetti();
+        }
     });
 }
 
@@ -155,6 +204,17 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     const countdownInterval = initCountdown();
     initWhatsAppRedirect();
+    initImageReveal();
+
+    const music = document.getElementById('backgroundMusic');
+    
+    // Try to play music when user interacts with the page
+    document.addEventListener('click', function initAudio() {
+        music.play().catch(error => {
+            console.log('Autoplay prevented:', error);
+        });
+        document.removeEventListener('click', initAudio);
+    }, { once: true });
 });
 
 // Smooth scrolling for navigation
