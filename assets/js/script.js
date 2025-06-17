@@ -66,8 +66,8 @@ function createConfetti() {
     document.body.appendChild(canvas);
 
     const particles = [];
-    const colors = ['#FF69B4', '#FFB6C1', '#FF1493', '#FFFFFF', '#FFD700', '#FFA07A'];
-    const shapes = ['circle', 'square', 'triangle', 'heart'];
+    const colors = ['#FF69B4', '#FFB6C1', '#FF1493', '#FFD700', '#FFA07A', '#FFC0CB'];
+    const petalShapes = ['rose', 'cherry', 'lotus'];
 
     function resizeCanvas() {
         canvas.width = window.innerWidth;
@@ -78,17 +78,18 @@ function createConfetti() {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = -20;
-            this.size = Math.random() * 8 + 4;
+            this.size = Math.random() * 12 + 8;
             this.color = colors[Math.floor(Math.random() * colors.length)];
-            this.speed = Math.random() * 4 + 3;
+            this.speed = Math.random() * 3 + 2;
             this.angle = Math.random() * Math.PI * 2;
             this.rotation = Math.random() * 0.2 - 0.1;
-            this.shape = shapes[Math.floor(Math.random() * shapes.length)];
+            this.shape = petalShapes[Math.floor(Math.random() * petalShapes.length)];
             this.spin = Math.random() * 0.2 - 0.1;
             this.spinSpeed = Math.random() * 0.02 + 0.01;
             this.wobble = Math.random() * 0.1;
             this.wobbleSpeed = Math.random() * 0.02 + 0.01;
             this.wobbleOffset = Math.random() * Math.PI * 2;
+            this.opacity = 1;
         }
 
         update() {
@@ -97,40 +98,49 @@ function createConfetti() {
             this.angle += this.rotation;
             this.spin += this.spinSpeed;
             this.wobbleOffset += this.wobbleSpeed;
+            
+            // Add gentle swaying motion
+            this.x += Math.sin(this.wobbleOffset) * this.wobble;
         }
 
         draw() {
             ctx.save();
             ctx.translate(this.x, this.y);
             ctx.rotate(this.spin);
+            ctx.globalAlpha = this.opacity;
             ctx.fillStyle = this.color;
 
+            const s = this.size;
+            
             switch(this.shape) {
-                case 'circle':
+                case 'rose':
+                    // Rose petal shape
                     ctx.beginPath();
-                    ctx.arc(0, 0, this.size, 0, Math.PI * 2);
+                    ctx.moveTo(0, -s/2);
+                    ctx.bezierCurveTo(s/2, -s/2, s/2, s/2, 0, s/2);
+                    ctx.bezierCurveTo(-s/2, s/2, -s/2, -s/2, 0, -s/2);
                     ctx.fill();
                     break;
-                case 'square':
-                    ctx.fillRect(-this.size, -this.size, this.size * 2, this.size * 2);
-                    break;
-                case 'triangle':
+                    
+                case 'cherry':
+                    // Cherry blossom petal shape
                     ctx.beginPath();
-                    ctx.moveTo(0, -this.size);
-                    ctx.lineTo(this.size, this.size);
-                    ctx.lineTo(-this.size, this.size);
-                    ctx.closePath();
+                    ctx.moveTo(0, -s/2);
+                    ctx.bezierCurveTo(s/3, -s/3, s/3, s/3, 0, s/2);
+                    ctx.bezierCurveTo(-s/3, s/3, -s/3, -s/3, 0, -s/2);
                     ctx.fill();
                     break;
-                case 'heart':
-                    const s = this.size;
+                    
+                case 'lotus':
+                    // Lotus petal shape
                     ctx.beginPath();
-                    ctx.moveTo(0, s/4);
-                    ctx.bezierCurveTo(s/4, 0, s/2, s/4, 0, s);
-                    ctx.bezierCurveTo(-s/2, s/4, -s/4, 0, 0, s/4);
+                    ctx.moveTo(0, -s/2);
+                    ctx.bezierCurveTo(s/2, -s/4, s/2, s/4, 0, s/2);
+                    ctx.bezierCurveTo(-s/2, s/4, -s/2, -s/4, 0, -s/2);
                     ctx.fill();
                     break;
             }
+            
             ctx.restore();
         }
     }
@@ -138,7 +148,7 @@ function createConfetti() {
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        if (particles.length < 150) {
+        if (particles.length < 100) {
             particles.push(new Particle());
         }
 
