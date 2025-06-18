@@ -66,7 +66,7 @@ function createConfetti() {
     document.body.appendChild(canvas);
 
     const particles = [];
-    const colors = ['#FF69B4', '#FFB6C1', '#FF1493', '#FFD700', '#FFA07A', '#FFC0CB'];
+    const colors = ['#FF69B4', '#FFB6C1', '#FF1493', '#FF1A1A', '#FFA07A', '#FFC0CB'];
     const petalShapes = ['rose', 'cherry', 'lotus'];
 
     function resizeCanvas() {
